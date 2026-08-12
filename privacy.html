@@ -30,15 +30,16 @@
 </head>
 <body>
   <h1>Privacy Policy</h1>
-  <p class="meta">Brainfogg · Effective July 24, 2026</p>
+  <p class="meta">Brainfogg · Effective August 12, 2026</p>
 
   <p>Brainfogg helps parents turn school emails into a shared family calendar. This policy explains
      what we collect, why, and the choices you have. We keep the app’s data footprint small on purpose —
      less data is a feature, not an afterthought.</p>
 
   <div class="note"><strong>The short version:</strong> We collect only what the app needs to work.
-     We do not sell your data, we do not show ads, and we do not use any advertising or analytics
-     tracking. You can delete your account and all of its data from inside the app at any time.</div>
+     We do not sell your data, we do not show ads, and we do not use advertising or analytics
+     tracking. We do use a crash-reporting service to find out when the app fails, so we can fix it.
+     You can delete your account and all of its data from inside the app at any time.</div>
 
   <h2>Who we are</h2>
   <p>Brainfogg (“we,” “us”) is the provider of the Brainfogg mobile app. You can reach us at
@@ -67,10 +68,28 @@
      subscription. We do not sell your personal information, and we do not use it for advertising.</p>
 
   <h2>AI processing of forwarded emails</h2>
-  <p>To turn a forwarded email into calendar events, the email’s content is sent to
+  <p>To turn a forwarded email into calendar events, the email’s subject and content are sent to
      <strong>Anthropic</strong> (the maker of Claude AI), which extracts details like dates, times, and
-     titles and returns them to us. This happens only for emails you choose to forward. Anthropic
-     processes this content to provide the parsing result; it is not used to show you ads.</p>
+     titles and returns them to us. So that the right event reaches the right child, we send along
+     the child details <em>you as the parent entered into the app</em> — your child’s name, school,
+     grade, gender, activities, and any note you chose to add to help tell them apart. We do not send the
+     sender’s address or any attachments, and we never gather these details from anywhere but the
+     app, where you typed them yourself.</p>
+  <p>Some emails carry their real information inside pictures rather than text — a school flyer, a
+     game schedule, a closure notice. So that Claude can read those, we also send
+     <strong>the web addresses of pictures in the email</strong>, and Claude fetches them to look at.
+     We only send pictures the email declares large enough to hold real content; the tiny invisible
+     images senders use to count opens are left out.</p>
+  <p>Fetching a picture reaches the server hosting it — usually the school&rsquo;s or the sender&rsquo;s mail
+     provider. This is the same thing your own mail app does when it shows you the email.</p>
+  <p>Some school emails are only a pointer — “view this week&rsquo;s newsletter” with a link, and every
+     actual date lives on that page. When a forwarded email says its details live behind a link like
+     that, we fetch that one page — the same as you tapping the link — and include its text in the
+     parsing. We fetch only the page the email itself points to; we do not crawl onward from it.</p>
+  <p>This happens only for emails you choose to forward: if you never forward an email, nothing is
+     sent to Anthropic. Anthropic processes this content to return the parsing result. Under
+     Anthropic’s commercial terms, content sent through their API is not used to train their models,
+     and it is not used to show you ads.</p>
 
   <h2>Children’s data</h2>
   <p>Brainfogg is designed for parents and caregivers, not for children. Any information about a child
@@ -82,11 +101,22 @@
   <p>We share data only with the providers that make the app run, and only as needed to operate it:</p>
   <ul>
     <li><strong>Supabase</strong> — secure database and backend hosting.</li>
-    <li><strong>Anthropic</strong> — AI parsing of emails you forward.</li>
+    <li><strong>Anthropic</strong> — AI parsing of emails you forward. To work out which child an
+        email is about, we send the email&rsquo;s subject and body together with the child details you as
+        the parent entered into the app: your child&rsquo;s name, school, grade, gender, activities, and
+        any note you chose to add to help us tell them apart. We also send the web addresses of
+        pictures in the email so Claude can read text inside them; Claude fetches those pictures from
+        wherever they are hosted. When the email says its details live on a linked page, the text of
+        that page is sent as well. We do not send the sender&rsquo;s address or any attachments.</li>
     <li><strong>Apple &amp; RevenueCat</strong> — processing and managing subscriptions.</li>
     <li><strong>Expo</strong> — delivering push notifications.</li>
-    <li><strong>SendGrid</strong> — receiving the emails you forward to your Brainfogg address.</li>
+    <li><strong>Postmark</strong> — receiving the emails you forward to your Brainfogg address.</li>
     <li><strong>Google and Apple</strong> — if you choose to sign in with them, to verify your identity.</li>
+    <li><strong>Sentry</strong> — crash and error reporting. When the app crashes or hits an error, we
+        send Sentry the technical details of the failure: the error itself, where in the app it
+        happened, your device model and operating system version, and a short trail of the app&rsquo;s own
+        diagnostic messages leading up to it. This is turned off in development builds and is not
+        used to track what you do in the app.</li>
   </ul>
   <p>We may also disclose information if required by law, or to protect the safety and rights of our
      users. We do not sell your data to anyone.</p>

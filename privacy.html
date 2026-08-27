@@ -55,6 +55,10 @@
         generated from emails you forward.</li>
     <li><strong>Forwarded emails:</strong> when you forward a school email to your Brainfogg address,
         we receive that email’s content so we can turn it into calendar events (see “AI processing”).</li>
+    <li><strong>Promo codes:</strong> if you redeem a promo code, we record which code your family
+        redeemed and when.</li>
+    <!-- 근거: promo_code_uses(family_id·redeemed_at)·promo_codes.used_count — 정책·삭제 계약은
+         docs/promo_code_policy.md. 열거는 저장 테이블과 대조해 유지한다 (S111, 심사 08-19 W52). -->
     <li><strong>Device token:</strong> a push-notification token so we can send reminders and alerts.</li>
     <li><strong>Subscription status:</strong> whether you have an active subscription. Payments are
         handled by Apple; we never see or store your card or bank details.</li>
@@ -64,7 +68,7 @@
 
   <h2>How we use your information</h2>
   <p>We use it only to provide and operate the app: to build your family calendar, extract events from
-     emails you forward, send you reminders, share a schedule with your co-parent, and manage your
+     emails you forward, send you reminders, share a schedule with your partner, and manage your
      subscription. We do not sell your personal information, and we do not use it for advertising.</p>
 
   <h2>AI processing of forwarded emails</h2>
@@ -130,7 +134,7 @@
   <p>We keep your data only while your account is active. When you delete your account (Settings →
      Delete account), we permanently and immediately delete your personal data. If you are the only
      person in your family, your children, events, checklists, and forwarded-email records are deleted
-     too. If a co-parent remains, your personal data is removed and the shared family calendar stays
+     too. If a partner remains, your personal data is removed and the shared family calendar stays
      with them. Deletion is real deletion — we do not keep “just-in-case” copies.</p>
   <div class="note">Deleting your Brainfogg account does <strong>not</strong> cancel any subscription
      you bought through Apple. To stop billing, cancel the subscription in the App Store

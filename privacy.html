@@ -30,7 +30,7 @@
 </head>
 <body>
   <h1>Privacy Policy</h1>
-  <p class="meta">Brainfogg · Effective September 2, 2026</p>
+  <p class="meta">Brainfogg · Effective September 3, 2026</p>
 
   <p>Brainfogg helps parents turn school emails into a shared family calendar. This policy explains
      what we collect, why, and the choices you have. We keep the app’s data footprint small on purpose —
@@ -120,7 +120,9 @@
         attachments — only the parent addresses registered on your account.</li>
     <li><strong>Apple, Google &amp; RevenueCat</strong> — processing and managing subscriptions (App Store or Google Play billing).</li>
     <li><strong>Expo</strong> — delivering push notifications.</li>
-    <li><strong>Postmark</strong> — receiving the emails you forward to your Brainfogg address.</li>
+    <li><strong>Postmark</strong> &mdash; receiving the emails you forward to your Brainfogg address.
+        Postmark keeps a copy of each received email on its own servers for 45 days as part of that
+        service. See &ldquo;Reporting a wrong result&rdquo; below.</li>
     <li><strong>Google and Apple</strong> — if you choose to sign in with them, to verify your identity.</li>
     <li><strong>Sentry</strong> — crash and error reporting. When the app crashes or hits an error, we
         send Sentry the technical details of the failure: the error itself, where in the app it
@@ -135,6 +137,18 @@
   <p>If you sign in with Apple and choose to hide your email, Apple gives us a private relay address
      instead of your real one. That’s fine — Brainfogg works the same way. Notifications sent to that
      address are forwarded to you by Apple.</p>
+
+  <h2>Reporting a wrong result</h2>
+  <p>We do not store the emails you forward &mdash; we read one, create the events, and let it go. That
+     means when Brainfogg reads something wrong, we cannot see what went wrong unless you tell us.</p>
+  <p>If you tap <strong>&ldquo;Something look wrong?&rdquo;</strong> on an email in your Log and send the
+     report, you are asking us to look at that specific email. We then retrieve the original message
+     from our mail provider (Postmark), which holds received email for 45 days, and read it to find
+     what we misread. We look only at the email you reported. If the email is older than 45 days it is
+     no longer available and we only keep the note you wrote.</p>
+  <p>The report itself records who sent it, which email it refers to, its subject, when you forwarded
+     it, and any note you added. Reports are used to improve how Brainfogg reads school email, and are
+     deleted with your account.</p>
 
   <h2>Data retention and deletion</h2>
   <p>We keep your data only while your account is active. When you delete your account (Settings →

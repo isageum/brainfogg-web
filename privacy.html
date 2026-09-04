@@ -30,7 +30,7 @@
 </head>
 <body>
   <h1>Privacy Policy</h1>
-  <p class="meta">Brainfogg · Effective September 3, 2026</p>
+  <p class="meta">Brainfogg · Effective September 4, 2026</p>
 
   <p>Brainfogg helps parents turn school emails into a shared family calendar. This policy explains
      what we collect, why, and the choices you have. We keep the app’s data footprint small on purpose —
@@ -49,16 +49,29 @@
   <ul>
     <li><strong>Account:</strong> your email address, your name, and (optionally) a phone number,
         which is shown to your co-parent inside the app.</li>
+    <li><strong>People you invite:</strong> when you invite a partner, the name, email address and
+        (optionally) phone number you enter for them, so we can send the invitation and show who is in
+        your family. If someone asks to join your family with a code, we keep the name and phone number
+        they entered until you accept or decline the request.</li>
     <li><strong>Children you add:</strong> the child’s first name, grade, gender, school name,
         activities, and any short note you choose to enter. You decide what to add.</li>
     <li><strong>Your schedule:</strong> events, checklists, and related details you create or that are
         generated from emails you forward.</li>
     <li><strong>Forwarded emails:</strong> when you forward a school email to your Brainfogg address,
-        we receive that email’s content so we can turn it into calendar events (see “AI processing”).</li>
+        we receive that email’s content so we can turn it into calendar events (see “AI processing”).
+        <strong>We do not keep the message itself.</strong> What stays in your account is a record of
+        each forwarded email — its subject line, who it came from, when you forwarded it, and what we
+        made from it — which is what the app’s Log shows you.</li>
     <li><strong>Promo codes:</strong> if you redeem a promo code, we record which code your family
-        redeemed and when.</li>
+        redeemed, who redeemed it and when — and, if that family later starts a paid subscription,
+        that it did and on what date.</li>
     <!-- 근거: promo_code_uses(family_id·redeemed_at)·promo_codes.used_count — 정책·삭제 계약은
          docs/promo_code_policy.md. 열거는 저장 테이블과 대조해 유지한다 (S111, 심사 08-19 W52). -->
+    <li><strong>Changes you make to events:</strong> when you change an event’s date, time or place,
+        or delete one, we record that change so both parents can see what happened. These records stay
+        after the event itself is gone and are deleted with your account.</li>
+    <li><strong>Use of the app:</strong> the day you last opened the app, and a count of how many emails
+        your family forwarded (kept for 45 days), so we can apply the limits of your plan.</li>
     <li><strong>Device token:</strong> a push-notification token so we can send reminders and alerts.</li>
     <li><strong>Subscription status:</strong> whether you have an active subscription. Payments are
         handled by Apple (App Store) or Google (Google Play); we never see or store your card or bank details.</li>
@@ -79,9 +92,11 @@
      grade, gender, activities, and any note you chose to add to help tell them apart — and, so the
      model can recognize text that one of you wrote yourselves (a forwarded note or a reply) and not
      mistake it for a school announcement, the <strong>names and email addresses of the parents in
-     your family</strong> (the name you entered and the email address your account signed up with). We do not send the forwarded email’s sender header or any attachments — the only
-     addresses that go along are the parent addresses registered on your account — and the child
-     details are never gathered from anywhere but the app, where you typed them yourself.</p>
+     your family</strong> (the name you entered and the email address your account signed up with). We do not send the forwarded email’s sender header or any attachments. The forwarded
+     message itself goes as written, so when it quotes the school’s original email the sender line
+     inside that quote travels with it — we read that line so the app can show you who the email
+     originally came from. The child details are never gathered from anywhere but the app, where you
+     typed them yourself.</p>
   <p>Some emails carry their real information inside pictures rather than text — a school flyer, a
      game schedule, a closure notice. So that Claude can read those, we also send
      <strong>the web addresses of pictures in the email</strong>, and Claude fetches them to look at.
@@ -117,10 +132,12 @@
         pictures in the email so Claude can read text inside them; Claude fetches those pictures from
         wherever they are hosted. When the email says its details live on a linked page, the text of
         that page is sent as well. We do not send the forwarded email&rsquo;s sender header or any
-        attachments — only the parent addresses registered on your account.</li>
+        attachments; the forwarded message goes as written, so a sender line quoted inside it travels
+        with the text.</li>
     <li><strong>Apple, Google &amp; RevenueCat</strong> — processing and managing subscriptions (App Store or Google Play billing).</li>
     <li><strong>Expo</strong> — delivering push notifications.</li>
-    <li><strong>Postmark</strong> &mdash; receiving the emails you forward to your Brainfogg address.
+    <li><strong>Postmark</strong> &mdash; receiving the emails you forward to your Brainfogg address,
+        and delivering the emails we send you, such as partner invitations.
         Postmark keeps a copy of each received email on its own servers for 45 days as part of that
         service. See &ldquo;Reporting a wrong result&rdquo; below.</li>
     <li><strong>Google and Apple</strong> — if you choose to sign in with them, to verify your identity.</li>
@@ -139,8 +156,10 @@
      address are forwarded to you by Apple.</p>
 
   <h2>Reporting a wrong result</h2>
-  <p>We do not store the emails you forward &mdash; we read one, create the events, and let it go. That
-     means when Brainfogg reads something wrong, we cannot see what went wrong unless you tell us.</p>
+  <p>We do not store the body of the emails you forward &mdash; we read one, create the events, and let
+     it go, keeping only the record described above (subject, sender, and when it arrived). That means
+     when Brainfogg reads something wrong, we cannot see what the message actually said unless you
+     tell us.</p>
   <p>If you tap <strong>&ldquo;Something look wrong?&rdquo;</strong> on an email in your Log and send the
      report, you are asking us to look at that specific email. We then retrieve the original message
      from our mail provider (Postmark), which holds received email for 45 days, and read it to find
@@ -155,7 +174,10 @@
      Delete account), we permanently and immediately delete your personal data. If you are the only
      person in your family, your children, events, checklists, and forwarded-email records are deleted
      too. If a partner remains, your personal data is removed and the shared family calendar stays
-     with them. Deletion is real deletion — we do not keep “just-in-case” copies.</p>
+     with them. Deletion is real deletion — we do not keep “just-in-case”
+     copies of your account. While your account is open, the record of changes made to an event
+     (described above) stays even after that event is deleted, so both parents can see what happened;
+     it goes when your account does.</p>
   <div class="note">Deleting your Brainfogg account does <strong>not</strong> cancel any subscription
      you bought through Apple or Google. To stop billing, cancel the subscription in the App Store
      (Settings → your name → Subscriptions) or in Google Play (Menu → Payments &amp; subscriptions →

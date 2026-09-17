@@ -30,7 +30,7 @@
 </head>
 <body>
   <h1>Privacy Policy</h1>
-  <p class="meta">Brainfogg · Effective September 4, 2026</p>
+  <p class="meta">Brainfogg · Effective September 17, 2026</p>
 
   <p>Brainfogg helps parents turn school emails into a shared family calendar. This policy explains
      what we collect, why, and the choices you have. We keep the app’s data footprint small on purpose —
@@ -48,7 +48,7 @@
   <h2>Information we collect</h2>
   <ul>
     <li><strong>Account:</strong> your email address, your name, and (optionally) a phone number,
-        which is shown to your co-parent inside the app.</li>
+        which is shown to your partner inside the app.</li>
     <li><strong>People you invite:</strong> when you invite a partner, the name, email address and
         (optionally) phone number you enter for them, so we can send the invitation and show who is in
         your family. If someone asks to join your family with a code, we keep the name and phone number
@@ -73,6 +73,8 @@
     <li><strong>Use of the app:</strong> the day you last opened the app, and a count of how many emails
         your family forwarded (kept for 45 days), so we can apply the limits of your plan.</li>
     <li><strong>Device token:</strong> a push-notification token so we can send reminders and alerts.</li>
+    <li><strong>Your AI reading choice:</strong> when you allowed AI reading, when you last turned it
+        off, and when we last tried to notify you that an email arrived while it was off.</li>
     <li><strong>Subscription status:</strong> whether you have an active subscription. Payments are
         handled by Apple (App Store) or Google (Google Play); we never see or store your card or bank details.</li>
   </ul>
@@ -90,9 +92,11 @@
      titles and returns them to us. So that the right event reaches the right child, we send along
      the child details <em>you as the parent entered into the app</em> — your child’s name, school,
      grade, gender, activities, and any note you chose to add to help tell them apart — and, so the
-     model can recognize text that one of you wrote yourselves (a forwarded note or a reply) and not
-     mistake it for a school announcement, the <strong>names and email addresses of the parents in
-     your family</strong> (the name you entered and the email address your account signed up with). We do not send the forwarded email’s sender header or any attachments. The forwarded
+     model can recognize text you wrote yourself (a forwarded note or a reply) and not
+     mistake it for a school announcement, <strong>your own name and email address</strong> (the name
+     you entered and the email address your account signed up with). We send only the name and email
+     of the parent who forwarded the email; your partner&rsquo;s name and email are never sent, whether
+     or not they have allowed AI reading. We do not send the forwarded email’s sender header or any attachments. The forwarded
      message itself goes as written, so when it quotes the school’s original email the sender line
      inside that quote travels with it — we read that line so the app can show you who the email
      originally came from. The child details are never gathered from anywhere but the app, where you
@@ -108,10 +112,26 @@
      actual date lives on that page. When a forwarded email says its details live behind a link like
      that, we fetch that one page — the same as you tapping the link — and include its text in the
      parsing. We fetch only the page the email itself points to; we do not crawl onward from it.</p>
+  <p>When a forwarded email announces that something changed &mdash; a game moved, a trip was canceled
+     &mdash; we have to determine which event on your calendar it refers to. For that one question we make a
+     second request to Anthropic that includes <strong>the dates, times, and titles of events already
+     on your family&rsquo;s calendar</strong>, together with the email domain each of those events
+     originally came from. We send only the events near the date in question, and we do not send
+     their locations, their notes, or the parent they are assigned to.</p>
   <p>This happens only for emails you choose to forward: if you never forward an email, nothing is
      sent to Anthropic. Anthropic processes this content to return the parsing result. Under
      Anthropic’s commercial terms, content sent through their API is not used to train their models,
-     and it is not used to show you ads.</p>
+     and it is not used to show you ads. Anthropic deletes what it receives from us within 30 days; it may
+     keep something longer only where the law requires it or to enforce its usage policy against misuse.</p>
+  <p><strong>You choose this in the app.</strong> Before Brainfogg reads any email you forward, it
+     shows you what is sent and to whom, and asks you to allow it. Until you allow it, nothing you
+     forward is read, turned into events, or sent to Anthropic. You can stop at any time in Settings
+     &gt; Account &gt; &ldquo;Stop AI reading&rdquo;, and turn it back on from the same place. Your
+     forwarding address stays the same. Emails sent to it while AI reading is off are not read and
+     are not turned into events later; to use one, turn AI reading on and forward it again. Our mail
+     provider still receives anything sent to your address, as described below. When such an email
+     arrives, we may send you a notification so you know, at most once a day and only if
+     notifications are on.</p>
 
   <h2>Children’s data</h2>
   <p>Brainfogg is designed for parents and caregivers, not for children. Any information about a child
@@ -120,20 +140,26 @@
      We do not knowingly let children create accounts or use the app directly.</p>
 
   <h2>Who we share data with (service providers)</h2>
-  <p>We share data only with the providers that make the app run, and only as needed to operate it:</p>
+  <p>We share data only with the providers that make the app run, and only as needed to operate it.
+     Each of them is bound by terms with us that require the same or equal protection of your data as
+     this policy describes, and that limit their use of it to providing their service to Brainfogg:</p>
   <ul>
     <li><strong>Supabase</strong> — secure database and backend hosting.</li>
     <li><strong>Anthropic</strong> — AI parsing of emails you forward. To work out which child an
         email is about, we send the email&rsquo;s subject and body together with the child details you as
         the parent entered into the app: your child&rsquo;s name, school, grade, gender, activities, and
-        any note you chose to add to help us tell them apart, plus the names and email addresses of the
-        parents in your family so the model can recognize text one of you wrote yourselves and not mistake
-        it for a school announcement. We also send the web addresses of
+        any note you chose to add to help us tell them apart, plus the name and email address of the
+        parent who forwarded the email, so the model can recognize text you wrote
+        and not mistake it for a school announcement. Your partner&rsquo;s name and email are never
+        sent. We also send the web addresses of
         pictures in the email so Claude can read text inside them; Claude fetches those pictures from
         wherever they are hosted. When the email says its details live on a linked page, the text of
-        that page is sent as well. We do not send the forwarded email&rsquo;s sender header or any
-        attachments; the forwarded message goes as written, so a sender line quoted inside it travels
-        with the text.</li>
+        that page is sent as well. When a forwarded email announces that something changed, a second
+        request also includes the dates, times, and titles of events already on your family&rsquo;s
+        calendar, plus the email domain each came from, so the model can determine which event the
+        message refers to; their locations, their notes, and who they are assigned to are not sent. We do not send the
+        forwarded email&rsquo;s sender header or any attachments; the forwarded message goes as written,
+        so a sender line quoted inside it travels with the text.</li>
     <li><strong>Apple, Google &amp; RevenueCat</strong> — processing and managing subscriptions (App Store or Google Play billing).</li>
     <li><strong>Expo</strong> — delivering push notifications.</li>
     <li><strong>Postmark</strong> &mdash; receiving the emails you forward to your Brainfogg address,
@@ -189,8 +215,9 @@
      to collect as little of it as possible.</p>
 
   <h2>Your choices and rights</h2>
-  <p>You can view and edit your information in the app, and you can delete your account and its data at
-     any time from Settings. If you have questions or a request about your data, email us at
+  <p>You can view and edit your information in the app. You can withdraw your permission for AI reading
+     at any time in Settings &gt; Account &gt; &ldquo;Stop AI reading&rdquo;; emails sent to your forwarding
+     address while it is off are not read, and your address stays the same. You can delete your account and all its data from Settings. If you have questions or a request about your data, email us at
      <a href="mailto:hello@brainfogg.ai">hello@brainfogg.ai</a>.</p>
 
   <h2>Changes to this policy</h2>
